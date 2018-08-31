@@ -1,4 +1,4 @@
-function [ output ] = FW_T(par)
+%function [ output ] = FW_T(par)
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % this function implements Frank-Wolfe-thresholding method
@@ -22,6 +22,58 @@ function [ output ] = FW_T(par)
 %   output.time: time elapsed
 %  Cun Mu, Apr. '16
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+addpath('../FW_T/func');
+addpath('../FW_T/PROPACK');
+warning off;
+
+data = 'mall';
+% 'mall'
+% 'lobby'
+% 'hall'
+
+delta = 1e-3;
+rho = .75;  % sampling ratio; e.g. "1" for full observation
+
+fprintf('**************************************************************\n')
+fprintf(strcat(data, ' experiment', ' has started! \n'))
+path = strcat('..\FW_T\data\',data,'.mat');
+load(path); 
+[m n] = size(D); 
+fprintf('data has been loaded: m = %d, n = %d; \n', m,n);
+
+%% parameter tuning
+
+if rho == 1
+    
+    fprintf('RPCA with full obseravation; \n');
+    obs = D; Omega = ones(m,n);
+    
+else
+    
+    fprintf('RPCA with partial obseravation: ');
+    Omega = rand(m,n)<=rho; % support of observation
+    obs = Omega.*D; % measurements are made
+    fprintf('observations are generated; \n');
+    
+end
+
+% this is parameter to control noise level
+% the smaller the noise, the smaller is delta
+obs = obs/norm(obs, 'fro');
+lambda_1 = delta*rho; 
+lambda_2 = delta*sqrt(rho)/sqrt(max(m,n));
+
+% display video or not
+showvideo = 1;
+
+par.M = obs; 
+par.lambda_1 = lambda_1; par.lambda_2 =lambda_2;
+par.iter = 1000; 
+par.epsilon = 10^-3; % stopping criterion
+par.Omega = Omega;
+par.showvideo = true; 
+par.framesize = frameSize;
 
 %% setup
 M = par.M; % data matrix
