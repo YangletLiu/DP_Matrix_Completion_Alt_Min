@@ -27,10 +27,10 @@ addpath('../FW_T/func');
 addpath('../FW_T/PROPACK');
 warning off;
 
-data = 'mall';
-% 'mall'
-% 'lobby'
-% 'hall'
+data = 'movies.dat';
+% 'movies.dat'
+% 'ratings.dat'
+% 'users.dat'
 
 delta = 1e-3;
 rho = .75;  % sampling ratio; e.g. "1" for full observation
