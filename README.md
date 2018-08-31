@@ -1,2 +1,5 @@
 # DP_Matrix_Completion_Alt_Min
-a matlab code 
+% Matlab codes
+
+% Compared Algorithms
+% FW: Frank-Wolf Algorithm
