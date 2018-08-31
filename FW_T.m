@@ -20,7 +20,7 @@
 %   output.hist: objective values in history
 %   output.iter: number of iterations used
 %   output.time: time elapsed
-%  Cun Mu, Apr. '16
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addpath('../FW_T/func');
