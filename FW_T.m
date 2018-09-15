@@ -155,7 +155,7 @@ for k = 1: iter
     fprintf('|  %2d |   %10.5d   |   %10.5d   |%2.1d | \n', ...
         k, history(k+1), rel_err, count);
     
-    p(k) = rmse(D, L+S)
+    p(k) = rmse(M, L+S)
 end
 time_elapsed = cputime - time;
 

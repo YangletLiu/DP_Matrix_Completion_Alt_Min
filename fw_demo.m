@@ -64,9 +64,10 @@ p = output_fw.plot; iter = output_fw.iter-1;
 
 t=[1:iter];
 semilogy(t,p,'*-');
-20*log10(p(iter));
+% 20*log10(p(iter));
 legend('FW\_T');
 
 %title('Matrix:300X300,rank:50');
 xlabel('Iterations');
 ylabel('RMSE');
+saveas(gcf,'figure.jpg');
