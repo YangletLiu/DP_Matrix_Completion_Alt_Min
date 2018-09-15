@@ -7,6 +7,7 @@ function [ output ] = FW_T(par)
 % please refer to the following paper:
 %     "Scalable robust matrix recovery: Frank-Wolfe meets proximal methods"
 % Input
+%   par.D: origin matrix 
 %   par.M: data matrix (observations)
 %   par.lambda_1: lambda_1
 %   par.lambda_2: lambda_2
@@ -20,6 +21,7 @@ function [ output ] = FW_T(par)
 %   output.hist: objective values in history
 %   output.iter: number of iterations used
 %   output.time: time elapsed
+%   output.plot: image
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% setup
@@ -151,6 +153,7 @@ for k = 1: iter
     fprintf('|  %2d |   %10.5d   |   %10.5d   |%2.1d | \n', ...
         k, history(k+1), rel_err, count);
     
+    p(k) = rmse(D, L+S)
 end
 time_elapsed = cputime - time;
 
@@ -171,6 +174,7 @@ output.S = S;
 output.hist = history;
 output.iter = k;
 output.time = time_elapsed;
+output.plot = p;
 
 % summary of output
 fprintf('**************************************************************\n')

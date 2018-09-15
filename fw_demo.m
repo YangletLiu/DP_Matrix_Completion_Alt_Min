@@ -39,6 +39,7 @@ lambda_2 = delta*sqrt(rho)/sqrt(max(m,n)); %正则化参数
 % display video or not
 showvideo = 1;
 
+par.D = D;
 par.M = obs; 
 par.lambda_1 = lambda_1; par.lambda_2 =lambda_2;
 par.iter = 1000; 
@@ -55,3 +56,13 @@ output_fw = FW_T(par); % main function
 
 % obtain the objective value returned from FW-T
 L = output_fw.L; S = output_fw.S;
+p = output.plot;
+20*log10(p(1000));
+t=[1:1000];
+semilogy(t,p,'*-');
+legend('FW_T');
+
+%title('Matrix:300X300,rank:50');
+xlabel('Iterations');
+ylabel('RMSE');
+toc
