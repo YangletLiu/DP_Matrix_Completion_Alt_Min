@@ -1,56 +1,8 @@
-data = 'movies.dat'; %æ•°æ®æ–‡ä»¶å
-% 'movies.dat'
-% 'ratings.dat'
-% 'users.dat'
+filename = 'H:\GitHub\DP_Matrix_Completion_Alt_Min\data\input.xlsx'; %Êı¾İÎÄ¼şÃû
 
-delta = 1e-3;
-rho = .75;  %é‡‡æ ·ç‡
+P(:,:)=xlsread(filename,1,'B2:OK6041');%¶ÁÈ¡Êı¾İÎÄ¼ş
 
-fprintf('**************************************************************\n')
-fprintf(strcat(data, ' experiment', ' has started! \n'))
-path = strcat('..\data\',data,'.mat');
-load(path);  %è¯»å–æ•°æ®æ–‡ä»¶
-
-[m n] = size(D); %è¿”å›dataæ•°æ®æ–‡ä»¶é‡Œçš„çŸ©é˜µå¤§å°
+[m n] = size(P); %·µ»ØdataÊı¾İÎÄ¼şÀïµÄ¾ØÕó´óĞ¡
 fprintf('data has been loaded: m = %d, n = %d; \n', m,n);
 
 
-%æ ¹æ®rhoæ¥ç¡®å®šé‡‡æ ·Omega
-if rho == 1
-    
-    fprintf('RPCA with full obseravation; \n');
-    obs = D; Omega = ones(m,n);
-    
-else
-    
-    fprintf('RPCA with partial obseravation: ');
-    Omega = rand(m,n)<=rho; % support of observation
-    obs = Omega.*D; % measurements are made
-    fprintf('observations are generated; \n');
-    
-end
-
-%ç”Ÿæˆç”¨äºæ§åˆ¶å™ªå£°çº§åˆ«çš„å˜é‡
-obs = obs/norm(obs, 'fro'); %ï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
-lambda_1 = delta*rho; 
-lambda_2 = delta*sqrt(rho)/sqrt(max(m,n)); %æ­£åˆ™åŒ–å‚æ•°
-
-% display video or not
-showvideo = 1;
-
-par.M = obs; 
-par.lambda_1 = lambda_1; par.lambda_2 =lambda_2;
-par.iter = 1000; 
-par.epsilon = 10^-3; % stopping criterion
-par.Omega = Omega;
-par.showvideo = true; 
-par.framesize = frameSize;
-
-fprintf('**************************************************************\n')
-fprintf('Let us try FW-T method! \n');
-fprintf('**************************************************************\n')
-
-output_fw = FW_T(par); % main function
-
-% obtain the objective value returned from FW-T
-L = output_fw.L; S = output_fw.S;
