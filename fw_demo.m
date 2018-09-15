@@ -1,5 +1,5 @@
-addpath('../FW_T/func');
-addpath('../FW_T/PROPACK');
+addpath('./FW_T/func');
+addpath('./FW_T/PROPACK');
 warning off;
 
 data = 'movielens'; %数据文件名
@@ -9,11 +9,15 @@ rho = .75;  %采样率
 
 fprintf('**************************************************************\n')
 fprintf(strcat(data, ' experiment', ' has started! \n'))
-path = strcat('..\data\',data,'.mat');
+path = strcat('.\data\',data,'.mat');
 load(path);  %读取数据文件
+
+D=input;
 
 [m n] = size(D); %返回data数据文件里的矩阵大小
 fprintf('data has been loaded: m = %d, n = %d; \n', m,n);
+frameSize(1)=m;
+frameSize(2)=n;
 
 
 %根据rho来确定采样Omega
@@ -56,13 +60,13 @@ output_fw = FW_T(par); % main function
 
 % obtain the objective value returned from FW-T
 L = output_fw.L; S = output_fw.S;
-p = output.plot;
-20*log10(p(1000));
-t=[1:1000];
+p = output_fw.plot; iter = output_fw.iter-1;
+
+t=[1:iter];
 semilogy(t,p,'*-');
-legend('FW_T');
+20*log10(p(iter));
+legend('FW\_T');
 
 %title('Matrix:300X300,rank:50');
 xlabel('Iterations');
 ylabel('RMSE');
-toc
