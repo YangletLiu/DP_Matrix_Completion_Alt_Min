@@ -36,14 +36,12 @@ else
 end
 
 %生成用于控制噪声级别的变量
-obs = obs/norm(obs, 'fro'); 
+obs = obs/norm(obs, 'fro'); %归一化
 lambda_1 = delta*rho; 
 lambda_2 = delta*sqrt(rho)/sqrt(max(m,n)); %正则化参数
 
-% display video or not
-showvideo = 1;
+showvideo = 1;%是否显示图像
 
-par.D = D;
 par.M = obs; 
 par.lambda_1 = lambda_1; par.lambda_2 =lambda_2;
 par.iter = 1000; 
