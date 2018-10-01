@@ -1,0 +1,1 @@
+function r=omega(D,rho)
