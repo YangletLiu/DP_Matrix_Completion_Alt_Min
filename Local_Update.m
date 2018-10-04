@@ -11,5 +11,10 @@ L;%bound on l2-norm of P_\omega(Y_i^*)
 Y= zeros(1*n);
 A=omega(Y-Y1,rho);
 u=(A.*v)/lamda1;
-
+Y=pai((1-1/T)Y-K/T.*u.*v')
+A=Omega(Y-Y1)
+if T=t:
+    r=Y;
+else:
+    r=A.*A';
 
