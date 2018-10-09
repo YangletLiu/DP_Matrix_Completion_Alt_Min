@@ -1,9 +1,9 @@
 %%%Global Component
 %initialization
-delta = ;
+delta = 10^(-100);
 epsilon = 2*log(1/delta);
 T = ;
-L = ;
+L = maxl2norm(D,rho,nu);
 beta = ;
 m = nu;
 n = ni;

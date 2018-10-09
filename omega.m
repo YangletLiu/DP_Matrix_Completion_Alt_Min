@@ -3,7 +3,9 @@ function r=omega(D,rho)
 if rho == 1
     
     %fprintf('RPCA with full obseravation; \n');
-    obs = D; Omega = ones(m,n);
+    Omega = ones(m,n);
+    r = Omega.*D; % measurements are made
+     %fprintf('observations are generated; \n');
     
 else
     
