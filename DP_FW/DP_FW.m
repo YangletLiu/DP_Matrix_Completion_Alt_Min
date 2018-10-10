@@ -16,3 +16,20 @@ D = input;
 
 [nu ni] = size(D); %返回data数据文件里的矩阵大小
 fprintf('data has been loaded: m = %d, n = %d; \n', m,n);
+
+%initialization
+
+delta = 10^(-100);
+epsilon = 2*log(1/delta);
+T = 10000;
+L = maxl2norm(D,rho,nu);
+beta = 10^(-2);
+
+sigma = (L^2*sqrt(64*T*log(1/delta)))/epsilon;
+v = zeros(1*n);
+lamda = 0;
+
+
+for t=1:T
+    (v,lamda)=global(D,rho,L,T,delta,epsilon,beta,sigma,v,lamda)
+end
