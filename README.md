@@ -1,11 +1,12 @@
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
 # Differentially Private Matrix Completion via Alternating Minimization
 ## Abstract
 Data privacy is fundamentally important in big data analysis, machine learning and distributed systems. To guarantee practical privacy, the notion of differential privacy is adopted to maximize the accuracy of queries in statistical database while minimizing the possibility of identifying records. In the matrix completion problem, recovery accuracy and data privacy are two contradicting aspects, since revealing more entries will increase the estimation accuracy but sacrifices privacy. Thus, privacy-preserving matrix completion is a challenging issue. In this paper, we propose a novel scheme for differentially private matrix completion with provably better accuracy bound. First, we present our differential private version of the practically efficient alternating minimization algorithm. Secondly, we present theoretical results for ensuring required privacy. Thirdly, on real world data sets, we compare the performances of our scheme with that of state-of-the-art schemes.
 
 ## Project Summary
 + We use Matlab to achieve a practical approach to complete matrix. 
-+ For synthetic data, we compare our Differentially Private Matrix Completion via Alternating Minimization with Private Frank-Wolf algorithm, since both are designed for low-rank matrix completion, to show the advantage of our algorithm. We conduct experiment to recover a low-rank matrix with rank-$r$, from observed elements in the subset $\Omega$. 
-+ For recovery error, we adopt the relative square metric, defined as $\text{RSE}=\frac{\|\widehat{\bm{M}}-\bm{M}\|_F}{\|\bm{M}\|_F}$ and $\text{RMSE}=\sqrt{\frac{1}{m}\sum\limits_{i=1}^m(y_i-\hat{y}_i)^2}$.
++ For synthetic data, we compare our Differentially Private Matrix Completion via Alternating Minimization with Private Frank-Wolf algorithm, since both are designed for low-rank matrix completion, to show the advantage of our algorithm. We conduct experiment to recover a low-rank matrix with rank-$ r $, from observed elements in the subset $\Omega$. 
++ For recovery error, we adopt the relative square metric, defined as $RSE=\frac{\|\widehat{\bm{M}}-\bm{M}\|_F}{\|\bm{M}\|_F}$ and $\text{RMSE}=\sqrt{\frac{1}{m}\sum\limits_{i=1}^m(y_i-\hat{y}_i)^2}$.
 + For running time, varying the matrix size and fixing other parameters, we measure CPU time in seconds.
 + For convergence speed, we measure the decreasing rate of the RES across the iterations by linearly fitting the measured RSEs (in log scale). We include those plots due to two reasons: 1) both algorithms are iterative; 2) the decreasing speed of the RSE provides explanations for the observed performance of the recovery error and the running time.
 
