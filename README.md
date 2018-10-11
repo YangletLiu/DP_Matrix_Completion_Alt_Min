@@ -11,6 +11,10 @@ Data privacy is fundamentally important in big data analysis, machine learning a
 
 ## Algorithm
 Our new algorithm are shown as follows:
+![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/Alg/Alg2.png)  
+![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/Alg/Alg3.png)  
+![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/Alg/Alg4.png)  
+![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/Alg/Alg5.png)  
 
 
 ## Data
