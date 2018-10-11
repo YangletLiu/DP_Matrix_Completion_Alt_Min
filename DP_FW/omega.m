@@ -1,5 +1,6 @@
 function r=omega(D,rho)
-%根据rho来确定采样Omega，实现投影操作
+
+[m,n]=size(D);
 if rho == 1
     
     %fprintf('RPCA with full obseravation; \n');

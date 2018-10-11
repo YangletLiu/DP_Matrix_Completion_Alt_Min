@@ -1,2 +1,17 @@
 function r=projection(D,L)
-r=min(L/(norm(omega(D),2),1).*D;
+
+[m,~]=size(D);
+DD=omega(D,rho);
+max = 0;
+for i=1:m
+    buf=norm(DD(i,:));
+    if max<buf
+        max = buf;
+    end
+end
+a = L/max;
+if a>1
+    r=D;
+else 
+    r=A*D;
+end

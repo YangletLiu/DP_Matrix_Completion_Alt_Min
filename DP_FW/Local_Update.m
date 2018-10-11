@@ -1,17 +1,16 @@
-function r=local(i,v,lamda1,T,t,L,D,Y,k)
+function [Yi,AN]=Local_Update(i,v,lamda1,T,t,L,D,k)
 
 Y1=D(i,:);
+[~,n]=size(D);
 
 if t==1
     Y= zeros(1*n);
 end
 A=omega(Y-Y1,rho);
 u=(A.*v)/lamda1;
-Y=projection((1-1/T)Y-k/T.*u.*v')
+a = (1-1/T).*Y-k/T.*u.*v';
+Y=projection(a,L);
 A=Omega(Y-Y1);
-if t==Y:
-    r=Y;
-else:
-    r=A.*A';
-end
+AN=A.*A';
+Yi=Y;
 

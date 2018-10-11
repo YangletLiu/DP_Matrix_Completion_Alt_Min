@@ -1,9 +1,11 @@
-%%%%%%%%%%%%%%%%%%%
-%Matrix completion
-%WHY
-%%%%%%%%%%%%%%%%%%%
 clc;
 clear all;
+
+data = 'movielens'; %数据文件名
+path = strcat('.\data\',data,'.mat');
+load(path);  
+D = input;   %读取数据文件
+[m,n] = size(D); %返回data数据文件里的矩阵大小
 
 RR=30;
 MM=200;NN=200;
