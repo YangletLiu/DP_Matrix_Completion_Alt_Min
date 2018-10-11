@@ -1,4 +1,4 @@
-function (v1,lamda2)=global(D,rho,L,T,delta,epsilon,beta,sigma,v,lamda)
+function (v1,lamda2)=global(D,rho,L,T,delta,epsilon,beta,sigma,v,lamda,k)
 %%%Global Component
 
 

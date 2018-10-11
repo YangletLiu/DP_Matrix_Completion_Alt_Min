@@ -24,6 +24,9 @@ epsilon = 2*log(1/delta);
 T = 10000;
 L = maxl2norm(D,rho,nu);
 beta = 10^(-2);
+k = 2*rank(D);
+
+p=zeros(1,T)
 
 sigma = (L^2*sqrt(64*T*log(1/delta)))/epsilon;
 v = zeros(1*n);
@@ -31,5 +34,5 @@ lamda = 0;
 
 
 for t=1:T
-    (v,lamda)=global(D,rho,L,T,delta,epsilon,beta,sigma,v,lamda)
+    (v,lamda)=global(D,rho,L,T,delta,epsilon,beta,sigma,v,lamda,k)
 end

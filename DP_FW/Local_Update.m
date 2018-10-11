@@ -1,4 +1,4 @@
-function r=local(i,v,lamda1,T,t,L,D,Y)
+function r=local(i,v,lamda1,T,t,L,D,Y,k)
 %%%Local Update 
 %%%我们首先要将待补全的矩阵彻底的分一下，好实现分布式的搞
 %%%我看文章中说的是yita是step size，也就是说可以任意的吗？？？？？
@@ -16,7 +16,7 @@ if t==1
 end
 A=omega(Y-Y1,rho);
 u=(A.*v)/lamda1;
-Y=pai((1-1/T)Y-K/T.*u.*v')
+Y=pai((1-1/T)Y-k/T.*u.*v')
 A=Omega(Y-Y1);
 if t==Y:
     r=Y;
