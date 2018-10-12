@@ -1,7 +1,7 @@
-function r=projection(D,L)
+function r=projection(D,L,Omega)
 
 [m,~]=size(D);
-DD=omega(D,rho);
+DD=omega(D,Omega);
 max = 0;
 for i=1:m
     buf=norm(DD(i,:));

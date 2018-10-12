@@ -1,7 +1,7 @@
-function L=maxl2norm(D,rho)
+function L=maxl2norm(D,Omega)
 
 [m,~]=size(D);
-DD=omega(D,rho);
+DD=omega(D,Omega);
 max = 0;
 for i=1:m
     buf=norm(DD(i,:));
