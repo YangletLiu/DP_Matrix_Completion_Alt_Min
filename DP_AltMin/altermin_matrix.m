@@ -4,7 +4,7 @@ load(path);
 D = input;   %读取数据文件
 [MM,NN] = size(D); %返回data数据文件里的矩阵大小
 
-rho=.75
+rho=.75;
 
 Omega = rand(MM,NN)<=rho; % support of observation
 Omega1 = Omega';
@@ -27,12 +27,12 @@ for t=1:400  %循环次数
         V(:,j)=x1\y; %算B的第j列
     end
     VV=V;
-    for j=1:MM %分别算U的每一列
-        y=D_omega(:,j);
+    for j=1:MM %分别算U的每一行
+        y=D_omega(:,j)';
         for i=1:RR
             x2(:,i)=Omega(:,j).*VV(:,i);
         end
-        U(:,j)=x2\y; %算A'的第j列
+        U(:,j)=y/x2; %算A'的第j列
     end
     UU=U';VV=VV';
     M0=UU*VV;  
