@@ -7,14 +7,13 @@ D = input;   %读取数据文件
 rho=.75;
 
 Omega = rand(MM,NN)<=rho; % support of observation
-Omega1 = Omega';
 D_omega = Omega.*D; % measurements are made
-D_omega1 = D_omega';
 PP=rand(1);
 P=PP(1,1);
 RR=rank(D);
+T=10;
 
-for t=1:400  %循环次数
+for t=1:T  %循环次数
     if t==1
         temp=D_omega.*P;
         [U,S1,V1]=svds(temp,RR);
@@ -26,28 +25,20 @@ for t=1:400  %循环次数
         end
         V(:,j)=x1\y; %算B的第j列
     end
-    VV=V;
     for j=1:MM %分别算U的每一行
-        y=D_omega(:,j)';
+        y=D_omega(j,:);
         for i=1:RR
-            x2(:,i)=Omega(:,j).*VV(:,i);
+            x2(i,:)=Omega(j,:).*V(i,:);
         end
-        U(:,j)=y/x2; %算A'的第j列
+        U(j,:)=y/x2; %算A'的第j列
     end
-    UU=U';VV=VV';
-    M0=UU*VV;  
+    M0=U*V;  
     p2(1,t)=rmse(D,M0);        
 end
 
-
-% subplot(1,2,1)
-% imshow(uint8(f01));title('original')
-% subplot(1,2,2)
-%imshow(uint8(M0))
-% 20*log10(p(10))
-t=[1:400];
-% semilogy(t,p);
-semilogy(t,p2);
-%title('Matrix:200*200,rank:30');
-%xlabel('Iterations');
-%ylabel('RSE in log-scale');
+q=[1:T];
+pic=semilogy(q,p2);
+imwrite(pic,picture .fig');
+I=imread(picture.fig);
+imwrite(picture1.bmp);
+imwrite(picture1.png);
