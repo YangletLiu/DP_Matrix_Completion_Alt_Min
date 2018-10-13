@@ -26,11 +26,11 @@ for t=1:400  %循环次数
         end
         V(:,j)=x1\y; %算B的第j列
     end
-    VV=V';
-    for j=1:MM %分别算A'的每一列
-        y=D_omega1(:,j);
+    VV=V;
+    for j=1:MM %分别算U的每一列
+        y=D_omega(:,j);
         for i=1:RR
-            x2(:,i)=Omega1(:,j).*VV(:,i);
+            x2(:,i)=Omega(:,j).*VV(:,i);
         end
         U(:,j)=x2\y; %算A'的第j列
     end
@@ -45,9 +45,9 @@ end
 % subplot(1,2,2)
 %imshow(uint8(M0))
 % 20*log10(p(10))
-%t=[1:10];
+t=[1:400];
 % semilogy(t,p);
-%semilogy(e,p2);
+semilogy(t,p2);
 %title('Matrix:200*200,rank:30');
 %xlabel('Iterations');
 %ylabel('RSE in log-scale');
