@@ -49,6 +49,8 @@ par.epsilon = 10^-3; % stopping criterion
 par.Omega = Omega;
 par.showvideo = true; 
 par.framesize = frameSize;
+par.D = D;
+
 
 fprintf('**************************************************************\n')
 fprintf('Let us try FW-T method! \n');

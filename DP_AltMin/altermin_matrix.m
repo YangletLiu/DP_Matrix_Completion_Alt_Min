@@ -14,10 +14,10 @@ PP=rand(1);
 P=PP(1,1);
 RR=rank(D);
 
-for t=1:1000  %循环次数
+for t=1:400  %循环次数
     if t==1
         temp=D_omega.*P;
-        [U,S1,V1]=svds(temp,R);
+        [U,S1,V1]=svds(temp,RR);
     end
     for j=1:NN %分别算V的每一列
         y=D_omega(:,j);        

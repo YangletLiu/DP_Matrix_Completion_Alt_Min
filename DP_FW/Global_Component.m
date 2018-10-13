@@ -10,7 +10,7 @@ rho = .75;  %²ÉÑùÂÊ
 Omega = rand(m,n)<=rho;
 delta = 10^(-100);
 epsilon = 2*log(1/delta);
-T = 10000;
+T = 400;
 L = maxl2norm(D,rho);
 beta = 10^(-2);
 k = 2*rank(D);
@@ -22,6 +22,7 @@ p=zeros(1,T);
 sigma = (L^2*sqrt(64*T*log(1/delta)))/epsilon;
 v = zeros(1,n);
 lamda = 0;
+Yi = zeros(1,n);
 
 for t=1:T
     W = zeros(n,n);
