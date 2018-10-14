@@ -10,7 +10,7 @@ rho = .75;  %²ÉÑùÂÊ
 Omega = rand(m,n)<=rho;
 delta = 10^(-100);
 epsilon = 2*log(1/delta);
-T = 400;
+T = 10;
 L = maxl2norm(D,rho);
 beta = 10^(-2);
 k = 2*rank(D);
