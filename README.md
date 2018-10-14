@@ -24,5 +24,5 @@ As we want to preserve privacy of every user, and the output for each user is <a
 ### DP_FW(Iteration-RMSE)
 ![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/DP_FW/DP_FW.png) 
 ### DP_Altmin(Iteration-RMSE)
-![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/DP_AltMin/picture1.png) 
+![](https://github.com/hust512/DP_Matrix_Completion_Alt_Min/raw/master/DP_AltMin/DP_AltMin.png) 
 
