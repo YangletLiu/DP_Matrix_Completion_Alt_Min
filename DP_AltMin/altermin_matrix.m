@@ -19,7 +19,7 @@ T=10;
 I = maxl2norm(D,Omega);
 delta=2.2251e-308;
 temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
-sigma = 2*I*sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
+sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
 for t=1:T  %Ñ­»·´ÎÊý
     if t==1
