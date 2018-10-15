@@ -11,7 +11,7 @@ Omega = rand(m,n)<=rho;
 delta = 10^(-100);
 epsilon = 2*log(1/delta);
 T = 10;
-L = maxl2norm(D,rho);
+L = maxl2norm(D,Omega);
 beta = 10^(-2);
 k = 2*rank(D);
 
