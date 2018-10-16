@@ -17,7 +17,8 @@ T=10;
 
 
 I = maxl2norm(D,Omega);
-delta=2.2251e-308;
+% delta=2.2251e-308;
+delta=10^(-6);
 temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
 sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
@@ -43,7 +44,7 @@ for t=1:T  %循环次数
         u(:,j)=pinv(x2)*y; %算A'的第j列
     end
     U=u';V=V';
-    U=U+normrnd(0,sigma^2);
+    U=U+normrnd(0,sigma^2*T);
     M0=U*V;  
     p(t)=norm(D-M0,'fro')/norm(D(:));
     p2(t)=rmse(D,M0);        

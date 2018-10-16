@@ -8,9 +8,9 @@ D = input;   %读取数据文件
 %初始化global部分所需的参数
 rho = .75;  %采样率
 Omega = rand(m,n)<=rho;
-delta = 10^(-100);
+delta = 10^(-6);
 epsilon = 2*log(1/delta);
-T = 10;
+T = 400;
 L = maxl2norm(D,Omega);
 beta = 10^(-2);
 k = 2*rank(D);
