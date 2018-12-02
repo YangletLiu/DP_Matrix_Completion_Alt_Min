@@ -1,8 +1,8 @@
-data = 'movielens'; %Êı¾İÎÄ¼şÃû
+data = 'movielens'; %æ•°æ®æ–‡ä»¶å
 path = strcat('.\data\',data,'.mat');
 load(path);  
-D = input;   %¶ÁÈ¡Êı¾İÎÄ¼ş
-[MM,NN] = size(D); %·µ»ØdataÊı¾İÎÄ¼şÀïµÄ¾ØÕó´óĞ¡
+D = input;   %è¯»å–æ•°æ®æ–‡ä»¶
+[MM,NN] = size(D); %è¿”å›dataæ•°æ®æ–‡ä»¶é‡Œçš„çŸ©é˜µå¤§å°
 
 rho=.75;
 
@@ -22,26 +22,26 @@ delta=10^(-6);
 temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
 sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
-for t=1:T  %Ñ­»·´ÎÊı
+for t=1:T  %å¾ªç¯æ¬¡æ•°
     if t==1
         U = randi([0,5],MM,RR);
 %         temp=D_omega.*P;
 %         [U,S1,V1]=svds(temp,RR);
     end
-    for j=1:NN %·Ö±ğËãVµÄÃ¿Ò»ÁĞ
+    for j=1:NN %åˆ†åˆ«ç®—Vçš„æ¯ä¸€åˆ—
         y=D_omega(:,j);        
         for i=1:RR
-            x1(:,i)=Omega(:,j).*U(:,i);%½«²ÉÑù¾ØÕóKµÄµÚjÁĞ¸úU0¶ÔÓ¦ĞĞµÄÃ¿¸öÔªËØÏà³Ë
+            x1(:,i)=Omega(:,j).*U(:,i);%å°†é‡‡æ ·çŸ©é˜µKçš„ç¬¬jåˆ—è·ŸU0å¯¹åº”è¡Œçš„æ¯ä¸ªå…ƒç´ ç›¸ä¹˜
         end
-        v(:,j)=pinv(x1)*y; %ËãvµÄµÚjÁĞ
+        v(:,j)=pinv(x1)*y; %ç®—vçš„ç¬¬jåˆ—
     end
     V=v';
-    for j=1:MM %·Ö±ğËãUµÄÃ¿Ò»ĞĞ
+    for j=1:MM %åˆ†åˆ«ç®—Uçš„æ¯ä¸€è¡Œ
         y=D_omega1(:,j);
         for i=1:RR
             x2(:,i)=Omega1(:,j).*V(:,i);
         end
-        u(:,j)=pinv(x2)*y; %ËãA'µÄµÚjÁĞ
+        u(:,j)=pinv(x2)*y; %ç®—A'çš„ç¬¬jåˆ—
     end
     U=u';V=V';
     U=U+normrnd(0,sigma^2*T);
@@ -53,4 +53,9 @@ end
 
 % 20*log10(p(10))
 q=[1:T];
-pic=semilogy(q,p2);
+plot(q, p2 , '-r', 'LineWidth', 1.5);
+xlabel('\fontsize{14}time (sec)');
+ylabel(strcat(['\fontsize{14}testing ',' ', err_type]));
+grid on;
+box on;
+%pic=semilogy(q,p2);
