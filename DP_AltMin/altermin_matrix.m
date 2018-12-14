@@ -24,9 +24,9 @@ sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
 
 %----------------------------------------
-epsilon_list = [0.1, 1.0, 2.0, 5.0];
-result = zeros(1,4);
-for epsilon_index = 1:4
+epsilon_list = [0.1, 0.5, 1.0, 2.0, 5.0];
+result = zeros(1,5);
+for epsilon_index = 1:5
     epsilon = epsilon_list(epsilon_index);
 %-----------------------------------------
 
