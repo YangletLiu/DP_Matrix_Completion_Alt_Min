@@ -22,6 +22,14 @@ delta=10^(-6);
 temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
 sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
+
+%----------------------------------------
+epsilon_list = [0.1, 1.0, 2.0, 5.0];
+result = zeros(1,4);
+for epsilon_index = 1:4
+    epsilon = epsilon_list(epsilon_index);
+%-----------------------------------------
+
 for t=1:T  %循环次数
     if t==1
         U = randi([0,5],MM,RR);
@@ -49,13 +57,13 @@ for t=1:T  %循环次数
     p(t)=norm(D-M0,'fro')/norm(D(:));
     p2(t)=rmse(D,M0);        
 end
-
+ result(epsilon_index) = p2(T);
+end
 
 % 20*log10(p(10))
-q=[1:T];
-plot(q, p2 , '-r', 'LineWidth', 1.5);
-xlabel('\fontsize{14}time (sec)');
-ylabel(strcat(['\fontsize{14}testing ',' ', err_type]));
+%q=[1:T];
+plot(epsilon_list, result, '-bs','MarkerEdgeColor','r','MarkerFaceColor','r', 'MarkerSize', 10);
+xlabel('Epsilon per user');
+ylabel('RMSE');
 grid on;
-box on;
 %pic=semilogy(q,p2);
