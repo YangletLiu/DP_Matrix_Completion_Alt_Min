@@ -10,9 +10,9 @@ rho = .75;  %采样率
 Omega = rand(m,n)<=rho;
 delta = 10^(-6);
 
-epsilon_list = [0.1,1.0, 2.0, 5.0];
-result = zeros(1,4);
-for epsilon_index = 1:4
+epsilon_list = [0.1, 0.5, 1.0, 2.0, 5.0];
+result = zeros(1,5);
+for epsilon_index = 1:5
     epsilon = epsilon_list(epsilon_index);
     T = 20;
 %epsilon = 2*log(1/delta);
