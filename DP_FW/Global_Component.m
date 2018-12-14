@@ -48,5 +48,5 @@ plot(epsilon_list, result, '-r^','MarkerEdgeColor','b','MarkerFaceColor','b', 'M
 xlabel('Epsilon per user');
 ylabel('RMSE');
 grid on;
-q=[1:T];
-semilogy(q,p);
+%q=[1:T];
+%semilogy(q,p);
