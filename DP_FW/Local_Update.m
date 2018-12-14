@@ -12,7 +12,7 @@ end
 A=omega(Y-Y1,Omegai);
 u=(A.*v)/lamda1;
 a = (1-1/T)*Y-k/T*u*v';
-Y=projection(a,L,Omegai);
+Y=projection(a,L,Omega);
 A=omega(Y-Y1,Omegai);
 AN=A.*A';
 Yi=Y;
