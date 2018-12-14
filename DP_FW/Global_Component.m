@@ -1,45 +1,52 @@
-data = 'movielens'; %Êı¾İÎÄ¼şÃû
+data = 'movielens'; %æ•°æ®æ–‡ä»¶å
 path = strcat('.\data\',data,'.mat');
 load(path);  
-D = input;   %¶ÁÈ¡Êı¾İÎÄ¼ş
-[m,n] = size(D); %·µ»ØdataÊı¾İÎÄ¼şÀïµÄ¾ØÕó´óĞ¡
+D = input;   %è¯»å–æ•°æ®æ–‡ä»¶
+[m,n] = size(D); %è¿”å›dataæ•°æ®æ–‡ä»¶é‡Œçš„çŸ©é˜µå¤§å°
 %fprintf('data has been loaded: m = %d, n = %d; \n', m,n);
 
-%³õÊ¼»¯global²¿·ÖËùĞèµÄ²ÎÊı
-rho = .75;  %²ÉÑùÂÊ
+%åˆå§‹åŒ–globaléƒ¨åˆ†æ‰€éœ€çš„å‚æ•°
+rho = .75;  %é‡‡æ ·ç‡
 Omega = rand(m,n)<=rho;
 delta = 10^(-6);
-epsilon = 2*log(1/delta);
-T = 400;
-L = maxl2norm(D,Omega);
-beta = 10^(-2);
-k = 2*rank(D);
 
-Y=zeros(m,n);
-
-p=zeros(1,T);
-
-sigma = (L^2*sqrt(64*T*log(1/delta)))/epsilon;
-v = zeros(1,n);
-lamda = 0;
-Yi = zeros(1,n);
-
-for t=1:T
-    W = zeros(n,n);
-    lamda1 = lamda + sqrt(sigma*log(n/beta))*n^(1/4);
-    for i = 1:m
-        [Yi,AN] = Local_Update(i,v,lamda1,T,t,L,D,k,Omega,Yi) ;
-        Y(i,:)=Yi;
-        W = W + AN;
-    end
-    W = W + normrnd(0,sigma^2);
-    [V, S] = eig(W);
-    lambda = wrev(diag(S));
-    V = fliplr(V);
-    v=(V(:,1))';
-    lamda=lambda(1,:);
-    p(1,t)=rmse(D,Y);
+epsilon_list = [0.1,1.0, 2.0, 5.0];
+result = zeros(1,4);
+for epsilon_index = 1:4
+    epsilon = epsilon_list(epsilon_index);
+    T = 20;
+%epsilon = 2*log(1/delta);
+%T = 400;
+    L = maxl2norm(D,Omega);
+    beta = 10^(-2);
+    k = 2*rank(D);
+    Y=zeros(m,n);
+    p=zeros(1,T);
+    sigma = (L^2*sqrt(64*T*log(1/delta)))/epsilon;
+    v = zeros(1,n);
+    lamda = 0;
+    Yi = zeros(1,n);
+    for t=1:T
+        W = zeros(n,n);
+        lamda1 = lamda + sqrt(sigma*log(n/beta))*n^(1/4);
+        for i = 1:m
+            [Yi,AN] = Local_Update(i,v,lamda1,T,t,L,D,k,Omega,Yi) ;
+            Y(i,:)=Yi;
+            W = W + AN;
+         end
+         W = W + normrnd(0,sigma^2);
+         [V, S] = eig(W);
+         lambda = wrev(diag(S));
+         V = fliplr(V);
+         v=(V(:,1))';
+         lamda=lambda(1,:);
+         p(1,t)=rmse(D,Y);
+     end
+     result(epsilon_index) = p(T);
 end
-
+plot(epsilon_list, result, '-r^','MarkerEdgeColor','b','MarkerFaceColor','b', 'MarkerSize', 10);
+xlabel('Epsilon per user');
+ylabel('RMSE');
+grid on;
 q=[1:T];
 semilogy(q,p);
