@@ -19,8 +19,8 @@ T=10;
 I = maxl2norm(D,Omega);
 % delta=2.2251e-308;
 delta=10^(-6);
-temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
-sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
+%temp=sqrt(2*log(2/(delta)))/(2*log(1/(delta)));
+%sigma = 2*I*T*sqrt(2*log(2/(delta*T)))/(2*log(1/(delta)));
 
 
 %----------------------------------------
@@ -29,7 +29,7 @@ result = zeros(1,5);
 for epsilon_index = 1:5
     epsilon = epsilon_list(epsilon_index);
 %-----------------------------------------
-
+    sigma = (I^2*sqrt(32*T*log(1/delta)))/epsilon;
 for t=1:T  %循环次数
     if t==1
         U = randi([0,5],MM,RR);
