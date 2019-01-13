@@ -29,7 +29,7 @@ result = zeros(1,5);
 for epsilon_index = 1:5
     epsilon = epsilon_list(epsilon_index);
 %-----------------------------------------
-    sigma = (I^2*sqrt(32*T*log(1/delta)))/epsilon;
+    sigma = (I^2*sqrt(256*T*log(2/delta)))/epsilon;
 for t=1:T  %循环次数
     if t==1
         U = randi([0,5],MM,RR);
